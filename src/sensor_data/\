@@ -1,0 +1,12 @@
+import numpy as np
+
+generator = np.random.default_rng(1)
+
+NUM_READINGS = generator.intergers(1_000_000, 10_000_001)
+MEAN_TEMP = generator.uniform(40, 50)
+STD_DEV_TEMP = generator.uniform(10, 15)
+temperature_data = generator.normal(
+    loc=MEAN_TEMP,
+    scale=STD_DEV_TEMP,
+    size=NUM_READINGS
+)
