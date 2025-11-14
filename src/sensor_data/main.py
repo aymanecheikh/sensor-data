@@ -14,14 +14,14 @@ class DataDescriptor:
         self.fifth_percentile = np.percentile(self.data, 5)
         self.ninetyfifth_percentile = np.percentile(self.data, 95)
 
-    def __repr__(self, data_name):
+    def __repr__(self, data_name: tuple):
         return (
-            f'--- {data_name} Statistics ---\n'
-            f'Mean (Average): {self.mean:.2f} °C\n'
-            f'Median (Middle): {self.median:.2f} °C\n'
-            f'Std. Deviation (Spread): {self.std:.2f} °C\n'
-            f'90% Normal Range: {self.fifth_percentile:.2f} °C '
-            f'to {self.ninetyfifth_percentile:.2f} °C\n'
+            f'--- {data_name[0]} Statistics ---\n'
+            f'Mean (Average): {self.mean:.2f} {data_name[1]}\n'
+            f'Median (Middle): {self.median:.2f} {data_name[1]}\n'
+            f'Std. Deviation (Spread): {self.std:.2f} {data_name[1]}\n'
+            f'90% Normal Range: {self.fifth_percentile:.2f} {data_name[1]} '
+            f'to {self.ninetyfifth_percentile:.2f} {data_name[1]}\n'
         )
 
 
@@ -42,7 +42,7 @@ class TemperatureData(GenData):
         self.stats = DataDescriptor(self.data)
 
     def __repr__(self):
-        return self.stats.__repr__('Temperature')
+        return self.stats.__repr__(('Temperature', '°C'))
 
 @dataclass
 class PressureData(GenData):
@@ -55,7 +55,7 @@ class PressureData(GenData):
         self.stats = DataDescriptor(self.data)
 
     def __repr__(self):
-        return self.stats.__repr__('Pressure')
+        return self.stats.__repr__(('Pressure', 'kPa'))
 
 
 if __name__ == '__main__':
